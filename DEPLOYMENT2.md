@@ -123,6 +123,13 @@ api.query.SubtensorModule.TotalHotkeyAlpha.getValue
 
 For aggregateStake, we need to iterate all uids in subnet and get how many stake from current contract address. Based on the data, we can decide if to run aggregateStake.
 
+### 7 Emergency drain
+
+Emergency drain is used to handle some emergency situations. An account with permission needs to apply first, and then send a transaction to transfer the current staked token to the drain address after the timelock.
+The drain address is EVM account, you can call precompile to transfer token from EVM to Substrate address if needed. Check the following code as reference.
+
+[EVM to Substrate](https://github.com/opentensor/subtensor/blob/main/evm-tests/test/eth.substrate-transfer.test.ts#L78)
+
 ## Important Notes
 
 1. **SS58 Key Generation**: The `CONTRACT_SS58_KEY` MUST be generated from the contract's deployment address using the Blake2b-256 hash of `"evm:" + contract_address`. This is how the Bittensor precompiles identify the contract.
